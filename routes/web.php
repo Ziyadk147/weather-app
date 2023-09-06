@@ -16,4 +16,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('main.main');
 });
-Route::get('/ss' ,[ \App\Http\Controllers\WeatherController::class,'getWeather']);
+Route::post('/weather/get' ,[ \App\Http\Controllers\WeatherController::class,'getWeather'])->name('weather.get');

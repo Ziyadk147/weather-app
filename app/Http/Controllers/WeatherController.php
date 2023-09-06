@@ -19,8 +19,10 @@ class WeatherController extends Controller
         $response = $client->get('http://api.weatherapi.com/v1/current.json?key='.$apikey.'&q='.$city);
 
         $data = json_decode($response->getBody());
-
-        dd($data);
+        $payload['location'] = $data->location;
+        $payload['current'] = $data->current;
+//        dd($payload);
+        return view('main.main' , $payload);
 
 
     }
