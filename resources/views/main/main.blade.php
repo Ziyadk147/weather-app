@@ -4,20 +4,26 @@
 
     <div class="row mt-2 justify-content-center">
         <div class="col-lg-8 mx-auto">
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Enter A City</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-            </select>
+            <form action="{{route('weather.get')}}" method="POST">
+                @csrf
+                <div class="form-row align-items-center">
+                    <div class="col-sm-3 my-1">
+                        <label class="sr-only" for="inlineFormInputName">City</label>
+                        <input type="text" name="city" class="form-control" id="inlineFormInputName" placeholder="Jane Doe">
+                    </div>
+                    <div class="col-auto my-1">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
         </div>
 
     </div>
     <div class="row mt-2 justify-content-center">
         <div class="col-lg-3 w-50 mt-4">
             <div class="text-center">
-                <h1 class="fs-1 fw-bolder lh-1 font-monospace">Karachi</h1>
-                <span class="fs-6 fw-lighter font-monospace text-wrap">Chance Of Rain</span>
+                <h1 class="fs-1 fw-bolder lh-1 font-monospace">{{$location->name}}</h1>
+                <span class="fs-6 fw-lighter font-monospace text-wrap">Chance Of Rain:{{$current->precip_mm}}</span>
             </div>
         </div>
         <div class="col-lg-3 mt-4">
