@@ -7,7 +7,8 @@
                 @csrf
                 <div class="form-row align-items-center">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" name="city" placeholder="Enter a City" aria-label="City" aria-describedby="basic-addon2">
+                        <input type="text" class="form-control" name="city" id="citysearch" placeholder="Enter a City"
+                               aria-label="City" aria-describedby="basic-addon2" autocomplete="on">
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit">Search</button>
                         </div>
@@ -19,8 +20,9 @@
     <div class="row mt-2 justify-content-center">
         <div class="col-lg-3 w-50 mt-4">
             <div class="text-center">
-                <h1 class="fs-1 fw-bolder lh-1 font-monospace" id="cityName">{{isset($location->name)?$location->name:''}}</h1>
-                <span class="fs-6 fw-lighter font-monospace text-wrap" id="chancerain">Chance Of Rain:{{isset($current->precip_mm)?$current->precip_mm:''}}</span>
+                <h1 class="fs-1 fw-bolder lh-1 font-monospace" id="cityName">{{$location->name ?? ''}}</h1>
+                <span class="fs-6 fw-lighter font-monospace text-wrap"
+                      id="chancerain">Chance Of Rain:{{$current->precip_mm ?? ''}}</span>
             </div>
         </div>
         <div class="col-lg-3 mt-4" id="img-col">
@@ -32,60 +34,73 @@
         </div>
         <div class="w-100"></div>
         <div class="col-lg-6 mt-4" style="">
-            <h1 class="fw-bolder ml-2 lh-1 font-monospace " id="temp" style="font-size: 90px;margin-left: 75px" >{{isset($current->temp_c)?$current->temp_c:''}}°</h1>
+            <h1 class="fw-bolder ml-2 lh-1 font-monospace " id="temp"
+                style="font-size: 90px;margin-left: 75px">{{$current->temp_c ?? ''}}°</h1>
         </div>
     </div>
-
     <script>
+        $('#citysearch').on('keyup', function () {
+            // let options = {
+            //     types: [('cities')]
+            // }
+            // let input = $('#citysearch')
+            // let autocomplete = new google.maps.places.Autocomplete(input, options);
+            // console.log(autocomplete)
+            $.ajax({
+                method: 'GET',
+                url: 'https://api.api-ninjas.com/v1/city?name=' + $(this).val,
+                headers: { 'X-Api-Key':'FXUXCgZmTc1KOGV2OKjfPQ==qyTYYVSiw4YscqVi'
+                },
+                contentType: 'application/json',
+                success: function(result) {
+                    console.log(result);
+                },
+                error: function ajaxError(jqXHR) {
+                    console.error('Error: ', jqXHR.responseText);
+                }
+            });
+        })
+        $(document).ready(function () {
+            let $city = 'karachi'
 
-
-
-        $(document).ready(function (){
-
-
-           let $city = 'karachi'
-            function getCurrentLocation(){
+            function getCurrentLocation() {
                 $.ajax({
-                    url:'{{route('weather.currentlocation')}}',
-                    type:'POST',
-                    data:{
-                        _token:'{{csrf_token()}}'
+                    url: '{{route('weather.currentlocation')}}',
+                    type: 'POST',
+                    data: {
+                        _token: '{{csrf_token()}}'
                     },
-                    dataType:'JSON',
-                    success:function(success){
+                    dataType: 'JSON',
+                    success: function (success) {
                         return success['city']
                     }
                 })
             }
-            if($('#cityName').html() === ""){
+
+            if ($('#cityName').html() === "") {
                 $.ajax({
-                    url:'{{route('weather.get')}}',
-                    type:"post",
-                    data:{
-                        ajax:true,
-                        city:$city,
-                        _token:'{{csrf_token()}}'
+                    url: '{{route('weather.get')}}',
+                    type: "post",
+                    data: {
+                        ajax: true,
+                        city: $city,
+                        _token: '{{csrf_token()}}'
                     },
-                    dataType:'JSON',
-                    success:function(success){
+                    dataType: 'JSON',
+                    success: function (success) {
                         $('#cityName').html(success['location']['name'])
                         $('#chancerain').html('chance of rain:' + success['current']['precip_mm'])
-                        $('#temp').html(success['current']['temp_c']+'°')
-                        if(success['current']['is_day'] === 1){
+                        $('#temp').html(success['current']['temp_c'] + '°')
+                        if (success['current']['is_day'] === 1) {
                             $('#img-col').html(`@include('common.weather-img.sun')`)
-                        }
-                        else{
+                        } else {
                             $('#img-col').html(`@include('common.weather-img.moon')`)
                         }
-
-
                     }
-
                 })
-
             }
-
         })
     </script>
 @endsection
 
+{{--on change on the search bar which will send an ajax call to get the city--}}
