@@ -9,7 +9,7 @@
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" name="city" placeholder="Enter a City" aria-label="City" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="button">Search</button>
+                            <button class="btn btn-outline-secondary" type="submit">Search</button>
                         </div>
                     </div>
                 </div>
