@@ -16,14 +16,15 @@
             </form>
         </div>
     </div>
-    <div class="row mt-2 justify-content-center">
-        <div class="col-lg-3 w-50 mt-4">
+    <div class="row mt-2 mx-auto w-50">
+        <div class="col-lg-3 w-50 mt-4 mr-2">
             <div class="text-center">
                 <h1 class="fs-1 fw-bolder lh-1 font-monospace" id="cityName">{{isset($location->name)?$location->name:''}}</h1>
                 <span class="fs-6 fw-lighter font-monospace text-wrap" id="chancerain">Chance Of Rain:{{isset($current->precip_mm)?$current->precip_mm:''}}</span>
             </div>
         </div>
-        <div class="col-lg-3 mt-4" id="img-col">
+        <div class="col-lg-3 mt-4 w-50 " id="img-col">
+
             @if(isset($current->is_day) && $current->is_day == 1)
                 @include('common.weather-img.sun')
             @elseif(isset($current->is_day) && $current->is_day == 0)
@@ -31,18 +32,38 @@
             @endif
         </div>
         <div class="w-100"></div>
-        <div class="col-lg-6 mt-4" style="">
+        <div class="col-sm-6  mt-4" style="">
             <h1 class="fw-bolder ml-2 lh-1 font-monospace " id="temp" style="font-size: 90px;margin-left: 75px" >{{isset($current->temp_c)?$current->temp_c:''}}°</h1>
+
         </div>
     </div>
-
+    <div class="row w-75 mx-auto p-2">
+        <div class="card-group">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Today's Weather</h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Saturday</h5>
+                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><Sunday></Sunday></h5>
+                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
     <script>
-
-
-
         $(document).ready(function (){
-
-
            let $city = 'karachi'
             function getCurrentLocation(){
                 $.ajax({
@@ -77,14 +98,9 @@
                         else{
                             $('#img-col').html(`@include('common.weather-img.moon')`)
                         }
-
-
                     }
-
                 })
-
             }
-
         })
     </script>
 @endsection

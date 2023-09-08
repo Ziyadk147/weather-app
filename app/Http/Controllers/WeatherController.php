@@ -17,13 +17,17 @@ class WeatherController extends Controller
 
         $client = new Client();
 
-        $response = $client->get('http://api.weatherapi.com/v1/current.json?key='.$apikey.'&q='.$city);
+        $response = $client->get('http://api.weatherapi.com/v1/forecast.json?key='.$apikey.'&q='.$city.'&days=4');;
 
-        $data = json_decode($response->getBody());
+        $data = json_decode($response->getBody() , true);
 
-        $payload['location'] = $data->location;
+        $payload['location'] = $data['location'];
+        $payload['current'] = $data['current'];
+        $payload['today_weather'] = $data['forecast']['forecastday'][0]; //for extra details for the current weather
+        $payload['sat_weather'] = $data['forecast']['forecastday'][1];
+        $payload['sun_weather'] = $data['forecast']['forecastday'][2];
 
-        $payload['current'] = $data->current;
+//        dd($payload);
         if($request->ajax == true){
             return response()->json($payload);
         }
@@ -31,7 +35,6 @@ class WeatherController extends Controller
             return view('main.main' , $payload);
 
         }
-
     }
 
     public function getCurrentLocation(Request $request)
