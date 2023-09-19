@@ -32,7 +32,81 @@
         </div>
         <div class="w-100"></div>
         <div class="col-lg-6 mt-4" style="">
-            <h1 class="fw-bolder ml-2 lh-1 font-monospace " id="temp" style="font-size: 90px;margin-left: 75px" >{{isset($current->temp_c)?$current->temp_c:''}}°</h1>
+            <h1 class="fw-bolder ml-2 lh-1 font-monospace " id="temp" style="font-size: 90px;margin-left: 75px" >{{isset($current->temp_c)?$current->temp_c:''}}°C</h1>
+        </div>
+    </div>
+    <div class="row w-75 mx-auto mt-4">
+        <div class="card-group">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Today</h3>
+                    <div class="row">
+                        <div class="col">
+                            <h5>Average Temperature</h5>
+                            <p>{{$today_weather->day->avgtemp_c}}°C</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h5>Lowest Temperature</h5>
+                            <p>{{$today_weather->day->mintemp_c}}°C</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h5>Highest Temperature</h5>
+                            <p>{{$today_weather->day->maxtemp_c}}°C</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Tomorrow</h3>
+                    <div class="row">
+                        <div class="col">
+                            <h5>Average Temperature</h5>
+                            <p>{{$tomorrow_weather->day->avgtemp_c}}°C</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h5>Lowest Temperature</h5>
+                            <p>{{$tomorrow_weather->day->mintemp_c}}°C</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h5>Highest Temperature</h5>
+                            <p>{{$tomorrow_weather->day->maxtemp_c}}°C</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Day after Tomorrow</h3>
+                    <div class="row">
+                        <div class="col">
+                            <h5>Average Temperature</h5>
+                            <p>{{$after_tomorrow_weather->day->avgtemp_c}}°C</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h5>Lowest Temperature</h5>
+                            <p>{{$after_tomorrow_weather->day->mintemp_c}}°C</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h5>Highest Temperature</h5>
+                            <p>{{$after_tomorrow_weather->day->maxtemp_c}}°C</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
