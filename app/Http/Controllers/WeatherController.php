@@ -9,10 +9,13 @@ use Stevebauman\Location\Facades\Location;
 
 class WeatherController extends Controller
 {
+
+    public function index()
+    {
+     return view('main.main');
+    }
     public function getWeather(Request $request)
     {
-
-
         if(!isset($request->city)){
             $ip = '202.47.37.35'; //hard-coding the ip because $request->ip()returns my local ip
             $city = Location::get($ip)->cityName;
@@ -37,9 +40,6 @@ class WeatherController extends Controller
         $payload['tomorrow_weather'] = $forecast->forecastday[1];
         $payload['after_tomorrow_weather'] = $forecast->forecastday[2];
 
-//        dd($payload);
         return response()->json($payload);
-
-
     }
 }
