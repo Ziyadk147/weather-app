@@ -3,17 +3,16 @@
 
     <div class="row mt-2 justify-content-center">
         <div class="col-lg-8 mx-auto">
-            <form action="{{route('weather.get')}}" method="POST">
-                @csrf
+
                 <div class="form-row align-items-center">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" name="city" placeholder="Enter a City" aria-label="City" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" type="submit">Search</button>
+                            <button class="btn btn-outline-secondary" id="citysubmit">Search</button>
                         </div>
                     </div>
                 </div>
-            </form>
+
         </div>
     </div>
     <div class="row mt-2 justify-content-center">
@@ -35,130 +34,127 @@
             <h1 class="fw-bolder ml-2 lh-1 font-monospace " id="temp" style="font-size: 90px;margin-left: 75px" >{{isset($current->temp_c)?$current->temp_c:''}}°C</h1>
         </div>
     </div>
-    <div class="row w-75 mx-auto mt-4">
-        <div class="card-group">
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">Today</h3>
-                    <div class="row">
-                        <div class="col">
-                            <h5>Average Temperature</h5>
-                            <p>{{$today_weather->day->avgtemp_c}}°C</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <h5>Lowest Temperature</h5>
-                            <p>{{$today_weather->day->mintemp_c}}°C</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <h5>Highest Temperature</h5>
-                            <p>{{$today_weather->day->maxtemp_c}}°C</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">Tomorrow</h3>
-                    <div class="row">
-                        <div class="col">
-                            <h5>Average Temperature</h5>
-                            <p>{{$tomorrow_weather->day->avgtemp_c}}°C</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <h5>Lowest Temperature</h5>
-                            <p>{{$tomorrow_weather->day->mintemp_c}}°C</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <h5>Highest Temperature</h5>
-                            <p>{{$tomorrow_weather->day->maxtemp_c}}°C</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-body">
-                    <h3 class="card-title">Day after Tomorrow</h3>
-                    <div class="row">
-                        <div class="col">
-                            <h5>Average Temperature</h5>
-                            <p>{{$after_tomorrow_weather->day->avgtemp_c}}°C</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <h5>Lowest Temperature</h5>
-                            <p>{{$after_tomorrow_weather->day->mintemp_c}}°C</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <h5>Highest Temperature</h5>
-                            <p>{{$after_tomorrow_weather->day->maxtemp_c}}°C</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+{{--    <div class="row w-75 mx-auto mt-4">--}}
+{{--        <div class="card-group">--}}
+{{--            <div class="card">--}}
+{{--                <div class="card-body">--}}
+{{--                    <h3 class="card-title">Today</h3>--}}
+{{--                    <div class="row">--}}
+{{--                        <div class="col">--}}
+{{--                            <h5>Average Temperature</h5>--}}
+{{--                            <p>{{$today_weather->day->avgtemp_c}}°C</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="row">--}}
+{{--                        <div class="col">--}}
+{{--                            <h5>Lowest Temperature</h5>--}}
+{{--                            <p>{{$today_weather->day->mintemp_c}}°C</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="row">--}}
+{{--                        <div class="col">--}}
+{{--                            <h5>Highest Temperature</h5>--}}
+{{--                            <p>{{$today_weather->day->maxtemp_c}}°C</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="card">--}}
+{{--                <div class="card-body">--}}
+{{--                    <h3 class="card-title">Tomorrow</h3>--}}
+{{--                    <div class="row">--}}
+{{--                        <div class="col">--}}
+{{--                            <h5>Average Temperature</h5>--}}
+{{--                            <p>{{$tomorrow_weather->day->avgtemp_c}}°C</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="row">--}}
+{{--                        <div class="col">--}}
+{{--                            <h5>Lowest Temperature</h5>--}}
+{{--                            <p>{{$tomorrow_weather->day->mintemp_c}}°C</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="row">--}}
+{{--                        <div class="col">--}}
+{{--                            <h5>Highest Temperature</h5>--}}
+{{--                            <p>{{$tomorrow_weather->day->maxtemp_c}}°C</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="card">--}}
+{{--                <div class="card-body">--}}
+{{--                    <h3 class="card-title">Day after Tomorrow</h3>--}}
+{{--                    <div class="row">--}}
+{{--                        <div class="col">--}}
+{{--                            <h5>Average Temperature</h5>--}}
+{{--                            <p>{{$after_tomorrow_weather->day->avgtemp_c}}°C</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="row">--}}
+{{--                        <div class="col">--}}
+{{--                            <h5>Lowest Temperature</h5>--}}
+{{--                            <p>{{$after_tomorrow_weather->day->mintemp_c}}°C</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                    <div class="row">--}}
+{{--                        <div class="col">--}}
+{{--                            <h5>Highest Temperature</h5>--}}
+{{--                            <p>{{$after_tomorrow_weather->day->maxtemp_c}}°C</p>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
-        </div>
-    </div>
+{{--        </div>--}}
+{{--    </div>--}}
 
     <script>
 
 
 
         $(document).ready(function (){
-
-
-           let $city = 'karachi'
-            function getCurrentLocation(){
-                $.ajax({
-                    url:'{{route('weather.currentlocation')}}',
-                    type:'POST',
-                    data:{
-                        _token:'{{csrf_token()}}'
-                    },
-                    dataType:'JSON',
-                    success:function(success){
-                        return success['city']
-                    }
-                })
-            }
-            if($('#cityName').html() === ""){
+            $("#citysubmit").on('click' , function(){
+                console.log($(this).parent().siblings().val());
+                let city = $(this).parent().siblings().val();
                 $.ajax({
                     url:'{{route('weather.get')}}',
-                    type:"post",
+                    type:'POST',
                     data:{
-                        ajax:true,
-                        city:$city,
+                        city:city,
                         _token:'{{csrf_token()}}'
                     },
                     dataType:'JSON',
                     success:function(success){
-                        $('#cityName').html(success['location']['name'])
-                        $('#chancerain').html('chance of rain:' + success['current']['precip_mm'])
-                        $('#temp').html(success['current']['temp_c']+'°')
-                        if(success['current']['is_day'] === 1){
-                            $('#img-col').html(`@include('common.weather-img.sun')`)
-                        }
-                        else{
-                            $('#img-col').html(`@include('common.weather-img.moon')`)
-                        }
-
-
+                        console.log(success)
                     }
-
                 })
+            });
 
-            }
 
+        {{--    if($('#cityName').html() === ""){--}}
+        {{--        $.ajax({--}}
+        {{--            url:'{{route('weather.get')}}',--}}
+        {{--            type:"post",--}}
+        {{--            data:{--}}
+        {{--                ajax:true,--}}
+        {{--                city:$city,--}}
+        {{--                _token:'{{csrf_token()}}'--}}
+        {{--            },--}}
+        {{--            dataType:'JSON',--}}
+        {{--            success:function(success){--}}
+        {{--                $('#cityName').html(success['location']['name'])--}}
+        {{--                $('#chancerain').html('chance of rain:' + success['current']['precip_mm'])--}}
+        {{--                $('#temp').html(success['current']['temp_c']+'°')--}}
+        {{--                if(success['current']['is_day'] === 1){--}}
+        {{--                    $('#img-col').html(`@include('common.weather-img.sun')`)--}}
+        {{--                }--}}
+        {{--                else{--}}
+        {{--                    $('#img-col').html(`@include('common.weather-img.moon')`)--}}
+        {{--                }--}}
+        {{--            }--}}
+        {{--        })--}}
+        {{--    }--}}
         })
     </script>
 @endsection
