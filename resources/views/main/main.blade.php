@@ -46,6 +46,7 @@
 
 
         $(document).ready(function (){
+
             function forecast(success){
                 let location = success.location
                 let current = success.current
@@ -122,6 +123,7 @@
                             </div>
                         </div>
                    </div>`
+
                 $('#cityName').empty().html(location.name)
                 $('#chancerain').empty().html('Chance of rain '+today_data.day.daily_chance_of_rain)
                 $('#temp').empty().html(current.temp_c +'°C')
@@ -131,7 +133,6 @@
                 else{
                     $('#img-col').empty().html(`@include('common.weather-img.moon')`)
                 }
-
                 $('#forecastbody').empty().html(html);
             }
 
@@ -146,36 +147,11 @@
                     },
                     dataType:'JSON',
                     success:function(success){
-                        console.log(success);
-                       forecast(success);
+                       forecast(success); //calls the forecast function which renders the whole page with dynamic data
                     }
                 })
             });
-
-
-            {{--    if($('#cityName').html() === ""){--}}
-            {{--        $.ajax({--}}
-            {{--            url:'{{route('weather.get')}}',--}}
-            {{--            type:"post",--}}
-            {{--            data:{--}}
-            {{--                ajax:true,--}}
-            {{--                city:$city,--}}
-            {{--                _token:'{{csrf_token()}}'--}}
-            {{--            },--}}
-            {{--            dataType:'JSON',--}}
-            {{--            success:function(success){--}}
-            {{--                $('#cityName').html(success['location']['name'])--}}
-            {{--                $('#chancerain').html('chance of rain:' + success['current']['precip_mm'])--}}
-            {{--                $('#temp').html(success['current']['temp_c']+'°')--}}
-            {{--                if(success['current']['is_day'] === 1){--}}
-            {{--                    $('#img-col').html(`@include('common.weather-img.sun')`)--}}
-            {{--                }--}}
-            {{--                else{--}}
-            {{--                    $('#img-col').html(`@include('common.weather-img.moon')`)--}}
-            {{--                }--}}
-            {{--            }--}}
-            {{--        })--}}
-            {{--    }--}}
+            $("#citysubmit").trigger('click');
         })
     </script>
 @endsection
