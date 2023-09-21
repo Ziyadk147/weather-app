@@ -3,8 +3,8 @@
 </div>
 <style>
     .sun {
-        width: 100px;
-        height: 100px;
+        width: 170px;
+        height: 170px;
         background-color: yellow;
         border-radius: 50%;
         position: relative;
