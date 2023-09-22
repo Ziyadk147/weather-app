@@ -19,7 +19,7 @@ class WeatherController extends Controller
 
     public function index()
     {
-     return view('main.main');
+     return view('main.alternativeui');
     }
     public function getWeather(Request $request)
     {

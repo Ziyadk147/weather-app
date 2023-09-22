@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en"  data-bs-theme="dark">
+<html lang="en">
+{{--data-bs-theme="dark"--}}
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,7 +9,7 @@
 </head>
 <body>
 <div class="container-fluid">
-    @include('common.navbar')
+{{--    @include('common.navbar')--}}
 
     @include('common.scripts')
     @yield('content')
