@@ -4,10 +4,11 @@
 namespace App\Services;
 
 
+use App\Interfaces\WeatherRepositoryInterface;
 use GuzzleHttp\Client;
 use Stevebauman\Location\Facades\Location;
 
-class WeatherRepositoryService {
+class WeatherRepositoryService implements WeatherRepositoryInterface {
     public function getWeather($data)
     {
         if(!isset($data->city)){

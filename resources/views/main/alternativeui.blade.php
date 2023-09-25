@@ -2,8 +2,7 @@
 @section('content')
     <style>
         .row{
-            color: white
-        ;
+            color: white;
         }
     </style>
 
@@ -11,43 +10,43 @@
         <div class="col-auto col-md-3 col-xl-3 px-sm-2" style="background-color: #171719">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 <div class="input-group">
-                    <input class="form-control border-end-0 border rounded-pill" type="search" placeholder="Enter a City" id="example-search-input">
+                    <input class="form-control border-end-0 border rounded-pill" type="search" placeholder="Enter a City" id="sidebar-search-input">
                     <span class="input-group-append">
-                        <button class="btn btn-outline-secondary bg-white pl-2 border-bottom-0 border rounded-pill ms-n5 pr-2" type="button">
+                        <button class="btn btn-outline-secondary bg-white pl-2 border-bottom-0 border rounded-pill ms-n5 pr-2" id="sidebar-search-button" type="button">
                             <i class="ml-2 fa fa-search"></i>
                         </button>
                     </span>
                 </div>
                 <div class="row mt-5 mx-auto">
-                    <div class="col-8 mx-auto">
+                    <div class="col-8 mx-auto" id="sidebar-img">
                         @include('common.weather-img.sun')
                     </div>
                     <div class="w-100"></div>
                     <div class="col mt-5">
-                        <h1 class="display-2">27°C</h1>
+                        <h1 class="display-2" id="sidebar-temp">27°C</h1>
                     </div>
                 </div>
                 <div class="row mx-2">
                     <div class="col">
-                        <span class="fw-bolder fs-4">Monday,</span>
-                        <span class="fw-lighter fs-5 ml-2">16:00</span>
+                        <span class="fw-bolder fs-4" id="sidebar-day">Monday,</span>
+                        <span class="fw-lighter fs-5 ml-2" id="sidebar-time">16:00</span>
                     </div>
                     <hr class="hr mt-2 hr-blurry">
                     <div class="w-100"></div>
                     <div class="col">
                         <i class="fa-solid fa-cloud fa-2xl"></i>
-                        <span class="fw-bolder">Mostly Cloudy</span>
+                        <span class="fw-bolder" id="sidebar-temp-detail">Mostly Cloudy</span>
                     </div>
                     <div class="w-100">
                     </div>
                     <div class="col mt-4">
                         <i class="fa-solid fa-cloud-rain fa-2xl" style="color: #005eff;"></i>
-                        <span class="fw-bold">Rain-40%</span>
+                        <span class="fw-bold" id="sidebar-rain-chance">Rain-40%</span>
                     </div>
                 </div>
                 <div class="row mt-4 mx-2">
                     <div class="col mx-auto">
-                        <h2 class="display-4 fw-bolder">Karachi</h2>
+                        <h2 class="display-4 fw-bolder" id="sidebar-city">Karachi</h2>
                     </div>
                 </div>
             </div>
@@ -223,17 +222,17 @@
                 <div class="col mt-4">
                     <div class="card" style="width: 16rem; background-color: #171719;">
                         <div class="card-body">
-                                <div class="row px-2">
-                                    <span class="fw-bold">Sunrise & Sunset</span>
-                                    <div class="col mt-2">
-                                        <img src="{{asset('/64x64/day/113.png')}}" alt="">
-                                        <span class="fw-bold">6:16AM</span>
-                                    </div>
-                                    <div class="col mt-2">
-                                        <img src="{{asset('/64x64/day/113.png')}}" alt="">
-                                        <span class="fw-bold">6:16AM</span>
-                                    </div>
+                            <div class="row px-2">
+                                <span class="fw-bold">Sunrise & Sunset</span>
+                                <div class="col mt-2">
+                                    <img src="{{asset('/64x64/day/113.png')}}" alt="">
+                                    <span class="fw-bold">6:16AM</span>
                                 </div>
+                                <div class="col mt-2">
+                                    <img src="{{asset('/64x64/day/113.png')}}" alt="">
+                                    <span class="fw-bold">6:16AM</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -296,4 +295,27 @@
 
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            $('#sidebar-search-button').on('click',function(){
+                const city = $('#sidebar-search-input').val();
+                $.ajax({
+                    url:'{{route('weather.get')}}',
+                    type:'POST',
+                    data:{
+                        city:city,
+                        _token:'{{csrf_token()}}'
+                    },
+                    success:function(success){
+                        getData(success)
+                    }
+                })
+            })
+            function getData(data){
+
+                // TODO://implement the Logic
+
+            }
+        })
+    </script>
 @endsection
