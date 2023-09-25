@@ -4,5 +4,5 @@ namespace App\Interfaces;
 
 interface WeatherRepositoryInterface {
 
-    public function getWeather();
+    public function getWeather($data);
 }
