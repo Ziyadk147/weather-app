@@ -311,10 +311,14 @@
                     }
                 })
             })
-            function getData(data){
-
+            function getData(response){
                 // TODO://implement the Logic
+                const current = response.current;
+                const today_forcast = response.forecast.data[0];
 
+                $("#sidebar-temp").empty().html(current.temp+"°C")
+                $("#sidebar-day").empty().html()
+                console.log(today_forcast)
             }
         })
     </script>
