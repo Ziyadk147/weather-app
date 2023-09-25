@@ -19,12 +19,11 @@ class WeatherRepositoryService implements WeatherRepositoryInterface {
             $city = $data->city;
         }
 
-        $apikey = '761d0269fe0145caa47201101232008';
+        $apikey = '07e9aca5e3224df6a87ee58ffc86fd13';
 
-        $client = new Client();
-
-        $response = $client->get('http://api.weatherapi.com/v1/forecast.json?key='.$apikey.'&q='.$city.'&days=3');
-
+        $client = new \GuzzleHttp\Client();
+        $response = $client->get('https://api.weatherbit.io/v2.0/forecast/daily?city='.$city.'&key='.$apikey);
+        dd(json_encode($response));
         $data = get_object_vars(json_decode($response->getBody()));
         $location = $data['location'];
         $current = $data['current'];
@@ -36,6 +35,6 @@ class WeatherRepositoryService implements WeatherRepositoryInterface {
         $payload['tomorrow_weather'] = $forecast->forecastday[1];
         $payload['after_tomorrow_weather'] = $forecast->forecastday[2];
 
-        return $payload;
+        dd($payload);
     }
 }
