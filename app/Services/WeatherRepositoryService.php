@@ -26,12 +26,10 @@ class WeatherRepositoryService  {
             return Location::get($ip)->cityName;
         }
     }
-    public function unixToTime($unix_time)
+    public function getMonth($date)
     {
-        $datetime = new \DateTime("@$unix_time");
-        return $datetime->format('H:i:s');
+        return date('F' , strtotime($date));
     }
-
     public function getWeather($data)
     {
 
@@ -50,7 +48,7 @@ class WeatherRepositoryService  {
         $payload['current'] = $current_data['data'][0];
 
         $payload['current_day'] = $this->convertDateToDay($current_data['data'][0]->datetime);
-        $payload['current_time'] = $this->unixToTime($current_data['data'][0]->ts);
+        $payload['current_month'] = $this->getMonth($current_data['data'][0]->datetime);
         $payload['forecast'] = $forecast_data;
         return $payload;
     }
