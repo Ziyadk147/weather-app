@@ -296,7 +296,6 @@
     </div>
     <script>
         $(document).ready(function(){
-
             $('#sidebar-search-button').on('click',function(){
                 const city = $('#sidebar-search-input').val();
                 $.ajax({
@@ -314,18 +313,22 @@
             function getData(response){
                 // TODO://implement the Logic
                 const current = response.current;
+                const today_forecast = response.forecast.data[0];
+
                 $("#sidebar-temp").empty().html(current.temp+"°C")
                 $("#sidebar-day").empty().html(response.current_day)
                 $("#sidebar-time").empty().html(response.current_month)
-                $("#sidebar-temp-detail").empty().html(current.weather.description)
-                $("#sidebar-rain-chance").empty().html(current.precip+'%')
-                $("#sidebar-city").empty().html(current.city_name)
+                $("#sidebar-temp-detail").empty().html(response.current.weather.description)
+                $("#sidebar-rain-chance").empty().html(response.current.precip+'%')
+                $("#sidebar-city").empty().html(response.current.city_name)
                 if(current.pod === 'd'){
                     $("#sidebar-img").empty().html(`@include('common.weather-img.sun')`)
                 }
                 else{
                     $("#sidebar-img").empty().html(`@include('common.weather-img.moon')`)
                 }
+                $('#sidebar-temp-detail-img').addClass('fa-solid fa-'+current.weather.description)
+
             }
             $('#sidebar-search-button').trigger('click');
         })
