@@ -317,6 +317,7 @@
 
                 $("#sidebar-temp").empty().html(current.temp+"°C")
                 $("#sidebar-day").empty().html(response.current_day)
+                $("#sidebar-time").empty().html(response.current_month)
                 $("#sidebar-temp-detail").empty().html(response.current.weather.description)
                 $("#sidebar-rain-chance").empty().html(response.current.precip+'%')
                 $("#sidebar-city").empty().html(response.current.city_name)
