@@ -45,10 +45,12 @@ class WeatherRepositoryService  {
         $forecast_data = get_object_vars(json_decode($forecast_response->getBody()));
         $current_data = get_object_vars(json_decode($current_response->getBody()));
 
-        $payload['current'] = $current_data['data'][0];
+        $datetime =  $current_data['data'][0]->datetime;
+        $date = explode(':' , $datetime)[0];
 
-        $payload['current_day'] = $this->convertDateToDay($current_data['data'][0]->datetime);
-        $payload['current_month'] = $this->getMonth($current_data['data'][0]->datetime);
+        $payload['current'] = $current_data['data'][0];
+        $payload['current_day'] = $this->convertDateToDay($date);
+        $payload['current_month'] = $this->getMonth($date);
         $payload['forecast'] = $forecast_data;
         return $payload;
     }
