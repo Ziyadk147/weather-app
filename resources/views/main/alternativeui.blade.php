@@ -1,19 +1,14 @@
 @extends('layouts.layout')
 @section('content')
     <style>
-        .row .col{
+        .row{
             color: white;
         }
     </style>
 
     <div class="row flex-nowrap">
-
         <div class="col-auto col-md-3 col-xl-3 px-sm-2" style="background-color: #171719">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100" id="sidebarCollapse">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                 <div class="input-group">
                     <input class="form-control border-end-0 border rounded-pill" type="search" placeholder="Enter a City" id="sidebar-search-input">
                     <span class="input-group-append">
@@ -62,77 +57,6 @@
                 <div class="col fs-2 fw-bolder">Weekly</div>
             </div>
             <div class="row mx-1 mt-4" id="weekly">
-                <div class="col mb-4">
-                    <div class="card text-white" style="background-color: #171719;">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Monday</h5>
-                            <img src="{{asset('/64x64/day/113.png')}}" style="width: 80px" alt="">
-                            <p class="card-text fw-bolder fs-2">25°C</p>
-                            <p class="card-text fs-3">60%</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-4">
-                    <div class="card text-white" style="background-color: #171719;">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Monday</h5>
-                            <img src="{{asset('/64x64/day/113.png')}}" style="width: 80px" alt="">
-                            <p class="card-text fw-bolder fs-2">25°C</p>
-                            <p class="card-text fs-3">60%</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-4">
-                    <div class="card text-white" style="background-color: #171719;">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Monday</h5>
-                            <img src="{{asset('/64x64/day/113.png')}}" style="width: 80px" alt="">
-                            <p class="card-text fw-bolder fs-2">25°C</p>
-                            <p class="card-text fs-3">60%</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-4">
-                    <div class="card text-white" style="background-color: #171719;">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Monday</h5>
-                            <img src="{{asset('/64x64/day/113.png')}}" style="width: 80px" alt="">
-                            <p class="card-text fw-bolder fs-2">25°C</p>
-                            <p class="card-text fs-3">60%</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-4">
-                    <div class="card text-white" style="background-color: #171719;">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Monday</h5>
-                            <img src="{{asset('/64x64/day/113.png')}}" style="width: 80px" alt="">
-                            <p class="card-text fw-bolder fs-2">25°C</p>
-                            <p class="card-text fs-3">60%</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-4">
-                    <div class="card text-white" style="background-color: #171719;">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Monday</h5>
-                            <img src="{{asset('/64x64/day/113.png')}}" style="width: 80px" alt="">
-                            <p class="card-text fw-bolder fs-2">25°C</p>
-                            <p class="card-text fs-3">60%</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mb-4">
-                    <div class="card text-white" style="background-color: #171719;">
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Monday</h5>
-                            <img src="{{asset('/64x64/day/113.png')}}" style="width: 80px" alt="">
-                            <p class="card-text fw-bolder fs-2">25°C</p>
-                            <p class="card-text fs-3">60%</p>
-                        </div>
-                    </div>
-                </div>
-
             </div>
             <div class="row mt-4 mx-2">
                 <div class="col-12 mb-4">
@@ -141,8 +65,8 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100" style="background-color: #171719;">
                         <div class="card-body text-center text-white" >
-                            <h5 class="fw-bold mb-3">UV Index</h5>
-                            <span class="fw-bolder fs-2">5</span>
+                            <h5 class="fw-bold mb-3" >UV Index</h5>
+                            <span class="fw-bolder fs-2" id="uv-index">5</span>
                             <span class="fw-lighter fs-5">Units</span>
                         </div>
                     </div>
@@ -150,7 +74,7 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100" style="background-color: #171719;">
                         <div class="card-body text-center text-white">
-                            <h5 class="fw-bold mb-3">Wind Status</h5>
+                            <h5 class="fw-bold mb-3" id="wind-status">Wind Status</h5>
                             <span class="fw-bolder fs-2">7.2</span>
                             <span class="fw-lighter fs-5">Km/Hr</span>
                         </div>
@@ -159,15 +83,15 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100" style="background-color: #171719;">
                         <div class="card-body text-center text-white">
-                            <h5 class="fw-bold mb-3">Sunrise & Sunset</h5>
-                            <div class="row px-2">
+                            <h5 class="fw-bold mb-3 " >Sunrise & Sunset</h5>
+                            <div class="row px-2" >
                                 <div class="col">
                                     <img src="{{asset('/64x64/day/113.png')}}" alt="">
-                                    <span class="fw-bold">6:16AM</span>
+                                    <span class="fw-bold" id="sunrise">6:16AM</span>
                                 </div>
                                 <div class="col">
                                     <img src="{{asset('/64x64/day/113.png')}}" alt="">
-                                    <span class="fw-bold">6:16AM</span>
+                                    <span class="fw-bold" id="sunset">6:16AM</span>
                                 </div>
                             </div>
                         </div>
@@ -176,8 +100,8 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100" style="background-color: #171719;">
                         <div class="card-body text-center text-white">
-                            <h5 class="fw-bold mb-3">Humidity</h5>
-                            <span class="fw-bolder fs-1">12</span>
+                            <h5 class="fw-bold mb-3" >Humidity</h5>
+                            <span class="fw-bolder fs-1" id="Humidity">12</span>
                             <span class="fw-light fs-2">%</span>
                         </div>
                     </div>
@@ -185,18 +109,18 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100" style="background-color: #171719;">
                         <div class="card-body text-center text-white">
-                            <h5 class="fw-bold mb-3">Visibility</h5>
-                            <span class="fw-bolder fs-1">12</span>
-                            <span class="fw-light fs-2">%</span>
+                            <h5 class="fw-bold mb-3" >Visibility</h5>
+                            <span class="fw-bolder fs-1" id="visibility"></span>
+                            <span class="fw-light fs-2">KM</span>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100" style="background-color: #171719;">
                         <div class="card-body text-center text-white">
-                            <h5 class="fw-bold mb-3">Air Quality</h5>
-                            <span class="fw-bolder fs-1">12</span>
-                            <span class="fw-light fs-2">%</span>
+                            <h5 class="fw-bold mb-3" >Air Quality</h5>
+                            <span class="fw-bolder fs-1" id="air-quality"></span>
+                            <span class="fw-light fs-2">Units</span>
                         </div>
                     </div>
                 </div>
@@ -208,6 +132,7 @@
         $(document).ready(function(){
             // var cTime = moment().format();
             // console.log(cTime);
+
             $('#sidebar-search-button').on('click',function(){
                 const city = $('#sidebar-search-input').val();
                 $.ajax({
@@ -224,8 +149,12 @@
             })
             function getData(response){
                 // TODO://implement the Logic
+
                 const current = response.current;
                 const forecast = response.forecast.data;
+                console.log(response)
+                const today_forecast = response.forecast.data[0];
+
                 $("#sidebar-temp").empty().html(current.temp+"°C")
                 $("#sidebar-day").empty().html(response.current_day)
                 $("#sidebar-time").empty().html(response.current_month)
@@ -241,8 +170,27 @@
                 $('#sidebar-temp-detail-img').addClass('fa-solid fa-'+current.weather.description)
                 $.each(forecast , function(key, value){
                     let day = moment(value.datetime ,'YYYY-MM-DD')
-
+                    let html = `
+                    <div class="col mb-4">
+                        <div class="card text-white" style="background-color: #171719;">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">${day.format('dddd')}</h5>
+                                <img src="{{asset('/64x64/day/113.png')}}" style="width: 80px" alt="">
+                                <p class="card-text fw-bolder fs-2">${value.temp}°C</p>
+                                <p class="card-text fs-3">${value.weather.description}</p>
+                            </div>
+                        </div>
+                    </div>`
                 })
+                $('#uv-index').html(current.uv)
+                $('#wind-status').html(current.wind_spd)
+                $('#sunrise').html(current.sunrise)
+                $('#sunset').html(current.sunset)
+                $('#humidity').html(current.rh)
+                $('#visibility').html(current.vis)
+                $('#air-quality').html(current.aqi)
+
+
             }
             $('#sidebar-search-button').trigger('click');
         })
