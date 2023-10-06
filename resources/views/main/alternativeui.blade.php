@@ -49,244 +49,78 @@
                     </div>
                 </div>
             </div>
+
         </div>
+
         <div class="col py-3" style="background-color: #343434">
             <div class="row mx-2">
                 <div class="col fs-2 fw-bolder">Weekly</div>
             </div>
-            <div class="row mx-2 mt-4">
-                <div class="col">
-                    <div class="card" style="width: 7rem; background-color: #171719;">
-                        <div class="card-body">
-                            <div class="row px-2">
-                                <div class="col mx-1">
-                                    <span class="fw-bolder text-white">Sunday</span>
-                                </div>
-                                <div class="col w-100">
-                                    <img src="{{asset('/64x64/day/113.png')}}" alt="">
-                                </div>
-                                <div class="col mx-2">
-                                    <span class="fw-bolder">15</span>
-                                    <span class="fw-lighter">20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="col">
-                    <div class="card" style="width: 7rem; background-color: #171719;">
-                        <div class="card-body">
-                            <div class="row px-2">
-                                <div class="col mx-1">
-                                    <span class="fw-bolder text-white">Sunday</span>
-                                </div>
-                                <div class="col w-100">
-                                    <img src="{{asset('/64x64/day/113.png')}}" alt="">
-                                </div>
-                                <div class="col mx-2">
-                                    <span class="fw-bolder">15</span>
-                                    <span class="fw-lighter">20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="col">
-                    <div class="card" style="width: 7rem; background-color: #171719;">
-                        <div class="card-body">
-                            <div class="row px-2">
-                                <div class="col mx-1">
-                                    <span class="fw-bolder text-white">Sunday</span>
-                                </div>
-                                <div class="col w-100">
-                                    <img src="{{asset('/64x64/day/113.png')}}" alt="">
-                                </div>
-                                <div class="col mx-2">
-                                    <span class="fw-bolder">15</span>
-                                    <span class="fw-lighter">20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="col">
-                    <div class="card" style="width: 7rem; background-color: #171719;">
-                        <div class="card-body">
-                            <div class="row px-2">
-                                <div class="col mx-1">
-                                    <span class="fw-bolder text-white">Sunday</span>
-                                </div>
-                                <div class="col w-100">
-                                    <img src="{{asset('/64x64/day/113.png')}}" alt="">
-                                </div>
-                                <div class="col mx-2">
-                                    <span class="fw-bolder">15</span>
-                                    <span class="fw-lighter">20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="col">
-                    <div class="card" style="width: 7rem; background-color: #171719;">
-                        <div class="card-body">
-                            <div class="row px-2">
-                                <div class="col mx-1">
-                                    <span class="fw-bolder text-white">Sunday</span>
-                                </div>
-                                <div class="col w-100">
-                                    <img src="{{asset('/64x64/day/113.png')}}" alt="">
-                                </div>
-                                <div class="col mx-2">
-                                    <span class="fw-bolder">15</span>
-                                    <span class="fw-lighter">20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="col">
-                    <div class="card" style="width: 7rem; background-color: #171719;">
-                        <div class="card-body">
-                            <div class="row px-2">
-                                <div class="col mx-1">
-                                    <span class="fw-bolder text-white">Sunday</span>
-                                </div>
-                                <div class="col w-100">
-                                    <img src="{{asset('/64x64/day/113.png')}}" alt="">
-                                </div>
-                                <div class="col mx-2">
-                                    <span class="fw-bolder">15</span>
-                                    <span class="fw-lighter">20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div><div class="col">
-                    <div class="card" style="width: 7rem; background-color: #171719;">
-                        <div class="card-body">
-                            <div class="row px-2">
-                                <div class="col mx-1">
-                                    <span class="fw-bolder text-white">Sunday</span>
-                                </div>
-                                <div class="col w-100">
-                                    <img src="{{asset('/64x64/day/113.png')}}" alt="">
-                                </div>
-                                <div class="col mx-2">
-                                    <span class="fw-bolder">15</span>
-                                    <span class="fw-lighter">20</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="row mx-1 mt-4" id="weekly">
             </div>
             <div class="row mt-4 mx-2">
-                <span class="fw-bolder fs-2">Today's Highlights</span>
-                <div class="col mt-4">
-                    <div class="card" style="width: 16rem; background-color: #171719;">
-                        <div class="card-body">
-                            <div class="row px-2">
+                <div class="col-12 mb-4">
+                    <h2 class="fw-bolder fs-2">Today's Highlights</h2>
+                </div>
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100" style="background-color: #171719;">
+                        <div class="card-body text-center text-white" >
+                            <h5 class="fw-bold mb-3" >UV Index</h5>
+                            <span class="fw-bolder fs-2" id="uv-index">5</span>
+                            <span class="fw-lighter fs-5">Units</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100" style="background-color: #171719;">
+                        <div class="card-body text-center text-white">
+                            <h5 class="fw-bold mb-3" id="wind-status">Wind Status</h5>
+                            <span class="fw-bolder fs-2">7.2</span>
+                            <span class="fw-lighter fs-5">Km/Hr</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100" style="background-color: #171719;">
+                        <div class="card-body text-center text-white">
+                            <h5 class="fw-bold mb-3 " >Sunrise & Sunset</h5>
+                            <div class="row px-2" >
                                 <div class="col">
-                                    <span class="fw-bold ">UV Index</span>
+                                    <img src="{{asset('/64x64/day/113.png')}}" alt="">
+                                    <span class="fw-bold" id="sunrise">6:16AM</span>
                                 </div>
-                                <div class="w-100"></div>
-                                <div class="col mt-4">
-                                    <span class="fw-bolder fs-2">
-                                        5
-                                    </span>
-                                    <span class="fw-lighter fs-5">
-                                        Units
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mt-4">
-                    <div class="card" style="width: 16rem; background-color: #171719;">
-                        <div class="card-body">
-                            <div class="row px-2">
                                 <div class="col">
-                                    <span class="fw-bold ">Wind Status</span>
-                                </div>
-                                <div class="w-100"></div>
-                                <div class="col mt-4">
-                                    <span class="fw-bolder fs-2">
-                                        7.2
-                                    </span>
-                                    <span class="fw-lighter fs-5">
-                                        Km/Hr
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col mt-4">
-                    <div class="card" style="width: 16rem; background-color: #171719;">
-                        <div class="card-body">
-                            <div class="row px-2">
-                                <span class="fw-bold">Sunrise & Sunset</span>
-                                <div class="col mt-2">
                                     <img src="{{asset('/64x64/day/113.png')}}" alt="">
-                                    <span class="fw-bold">6:16AM</span>
-                                </div>
-                                <div class="col mt-2">
-                                    <img src="{{asset('/64x64/day/113.png')}}" alt="">
-                                    <span class="fw-bold">6:16AM</span>
+                                    <span class="fw-bold" id="sunset">6:16AM</span>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="w-100"></div>
-                <div class="col mt-4">
-                    <div class="card" style="width: 16rem; background-color: #171719;">
-                        <div class="card-body">
-                            <div class="row px-2">
-                                <span class="fw-bold">Humidity</span>
-                                <div class="col mt-4">
-                                    <span class="fw-bolder fs-1">
-                                        12
-                                    </span>
-                                    <span class="fw-light fs-2">
-                                        %
-                                    </span>
-
-                                </div>
-                            </div>
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100" style="background-color: #171719;">
+                        <div class="card-body text-center text-white">
+                            <h5 class="fw-bold mb-3" >Humidity</h5>
+                            <span class="fw-bolder fs-1" id="Humidity">12</span>
+                            <span class="fw-light fs-2">%</span>
                         </div>
                     </div>
                 </div>
-                <div class="col mt-4">
-                    <div class="card" style="width: 16rem; background-color: #171719;">
-                        <div class="card-body">
-                            <div class="row px-2">
-                                <span class="fw-bold">Visibility</span>
-                                <div class="col mt-4">
-                                    <span class="fw-bolder fs-1">
-                                        12
-                                    </span>
-                                    <span class="fw-light fs-2">
-                                        %
-                                    </span>
-
-                                </div>
-                            </div>
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100" style="background-color: #171719;">
+                        <div class="card-body text-center text-white">
+                            <h5 class="fw-bold mb-3" >Visibility</h5>
+                            <span class="fw-bolder fs-1" id="visibility"></span>
+                            <span class="fw-light fs-2">KM</span>
                         </div>
                     </div>
                 </div>
-                <div class="col mt-4">
-                    <div class="card" style="width: 16rem; background-color: #171719;">
-                        <div class="card-body">
-                            <div class="row px-2">
-                                <span class="fw-bold">Air Quality</span>
-                                <div class="col mt-4">
-                                    <span class="fw-bolder fs-1">
-                                        12
-                                    </span>
-                                    <span class="fw-light fs-2">
-                                        %
-                                    </span>
-
-                                </div>
-                            </div>
+                <div class="col-12 col-md-4 mb-4">
+                    <div class="card h-100" style="background-color: #171719;">
+                        <div class="card-body text-center text-white">
+                            <h5 class="fw-bold mb-3" >Air Quality</h5>
+                            <span class="fw-bolder fs-1" id="air-quality"></span>
+                            <span class="fw-light fs-2">Units</span>
                         </div>
                     </div>
                 </div>
@@ -296,6 +130,9 @@
     </div>
     <script>
         $(document).ready(function(){
+            // var cTime = moment().format();
+            // console.log(cTime);
+
             $('#sidebar-search-button').on('click',function(){
                 const city = $('#sidebar-search-input').val();
                 $.ajax({
@@ -312,7 +149,10 @@
             })
             function getData(response){
                 // TODO://implement the Logic
+
                 const current = response.current;
+                const forecast = response.forecast.data;
+                console.log(response)
                 const today_forecast = response.forecast.data[0];
 
                 $("#sidebar-temp").empty().html(current.temp+"°C")
@@ -328,6 +168,28 @@
                     $("#sidebar-img").empty().html(`@include('common.weather-img.moon')`)
                 }
                 $('#sidebar-temp-detail-img').addClass('fa-solid fa-'+current.weather.description)
+                $.each(forecast , function(key, value){
+                    let day = moment(value.datetime ,'YYYY-MM-DD')
+                    let html = `
+                    <div class="col mb-4">
+                        <div class="card text-white" style="background-color: #171719;">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">${day.format('dddd')}</h5>
+                                <img src="{{asset('/64x64/day/113.png')}}" style="width: 80px" alt="">
+                                <p class="card-text fw-bolder fs-2">${value.temp}°C</p>
+                                <p class="card-text fs-3">${value.weather.description}</p>
+                            </div>
+                        </div>
+                    </div>`
+                })
+                $('#uv-index').html(current.uv)
+                $('#wind-status').html(current.wind_spd)
+                $('#sunrise').html(current.sunrise)
+                $('#sunset').html(current.sunset)
+                $('#humidity').html(current.rh)
+                $('#visibility').html(current.vis)
+                $('#air-quality').html(current.aqi)
+
 
             }
             $('#sidebar-search-button').trigger('click');
