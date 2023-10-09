@@ -19,6 +19,7 @@
                 </div>
                 <div class="row mt-5 mx-auto">
                     <div class="col-8 mx-auto" id="sidebar-img">
+                        @include('common.weather-img.sun')
                     </div>
                     <div class="w-100"></div>
                     <div class="col mt-5">
@@ -74,8 +75,8 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100" style="background-color: #171719;">
                         <div class="card-body text-center text-white">
-                            <h5 class="fw-bold mb-3" id="wind-status">Wind Status</h5>
-                            <span class="fw-bolder fs-2">7.2</span>
+                            <h5 class="fw-bold mb-3" >Wind Status</h5>
+                            <span class="fw-bolder fs-2" id="wind-status">7.2</span>
                             <span class="fw-lighter fs-5">Km/Hr</span>
                         </div>
                     </div>
@@ -100,7 +101,7 @@
                 <div class="col-12 col-md-4 mb-4">
                     <div class="card h-100" style="background-color: #171719;">
                         <div class="card-body text-center text-white">
-                            <h5 class="fw-bold mb-3" >Humidity</h5>
+                    <h5 class="fw-bold mb-3" >Humidity</h5>
                             <span class="fw-bolder fs-1" id="Humidity">12</span>
                             <span class="fw-light fs-2">%</span>
                         </div>
@@ -110,7 +111,7 @@
                     <div class="card h-100" style="background-color: #171719;">
                         <div class="card-body text-center text-white">
                             <h5 class="fw-bold mb-3" >Visibility</h5>
-                            <span class="fw-bolder fs-1" id="visibility"></span>
+                            <span class="fw-bolder fs-1" id="visibility">75</span>
                             <span class="fw-light fs-2">KM</span>
                         </div>
                     </div>
@@ -119,7 +120,7 @@
                     <div class="card h-100" style="background-color: #171719;">
                         <div class="card-body text-center text-white">
                             <h5 class="fw-bold mb-3" >Air Quality</h5>
-                            <span class="fw-bolder fs-1" id="air-quality"></span>
+                            <span class="fw-bolder fs-1" id="air-quality">105</span>
                             <span class="fw-light fs-2">Units</span>
                         </div>
                     </div>
@@ -127,72 +128,70 @@
             </div>
 
         </div>
-    </div>
-    <script>
-        $(document).ready(function(){
-            // var cTime = moment().format();
-            // console.log(cTime);
-
-            $('#sidebar-search-button').on('click',function(){
-                const city = $('#sidebar-search-input').val();
-                $.ajax({
-                    url:'{{route('weather.get')}}',
-                    type:'POST',
-                    data:{
-                        city:city,
-                        _token:'{{csrf_token()}}'
-                    },
-                    success:function(success){
-                        getData(success)
-                    }
+        <script>
+            $(document).ready(function(){
+                $('#sidebar-search-button').on('click',function(){
+                    const city = $('#sidebar-search-input').val();
+                    $.ajax({
+                        url:'{{route('weather.get')}}',
+                        type:'POST',
+                        data:{
+                            city:city,
+                            _token:'{{csrf_token()}}'
+                        },
+                        success:function(success){
+                            getData(success)
+                        }
+                    })
                 })
-            })
-            function getData(response){
-                // TODO://implement the Logic
+                function getData(response){
+                    // TODO://implement the Logic
+                    const current = response.current;
+                    const forecast = response.forecast.data;
+                    const today_forecast = response.forecast.data[0];
 
-                const current = response.current;
-                const forecast = response.forecast.data;
-                console.log(response)
-                const today_forecast = response.forecast.data[0];
+                    $("#sidebar-temp").empty().html(current.temp+"°C")
+                    $("#sidebar-day").empty().html(response.current_day)
+                    $("#sidebar-time").empty().html(response.current_month)
+                    $("#sidebar-temp-detail").empty().html(response.current.weather.description)
+                    $("#sidebar-rain-chance").empty().html(response.current.precip+'%')
+                    $("#sidebar-city").empty().html(response.current.city_name)
 
-                $("#sidebar-temp").empty().html(current.temp+"°C")
-                $("#sidebar-day").empty().html(response.current_day)
-                $("#sidebar-time").empty().html(response.current_month)
-                $("#sidebar-temp-detail").empty().html(response.current.weather.description)
-                $("#sidebar-rain-chance").empty().html(response.current.precip+'%')
-                $("#sidebar-city").empty().html(response.current.city_name)
-                if(current.pod === 'd'){
-                    $("#sidebar-img").empty().html(`@include('common.weather-img.sun')`)
-                }
-                else{
-                    $("#sidebar-img").empty().html(`@include('common.weather-img.moon')`)
-                }
-                $('#sidebar-temp-detail-img').addClass('fa-solid fa-'+current.weather.description)
-                $.each(forecast , function(key, value){
-                    let day = moment(value.datetime ,'YYYY-MM-DD')
-                    let html = `
+                    if(current.pod === 'd'){
+                        $("#sidebar-img").empty().html(`@include('common.weather-img.sun')`)
+                    }
+                    else{
+                        $("#sidebar-img").empty().html(`@include('common.weather-img.moon')`)
+                    }
+                    $('#sidebar-temp-detail-img').addClass('fa-solid fa-'+current.weather.description)
+
+                    $('#weekly').empty();
+                    $.each(forecast , function(key, value){
+                        let day = moment(value.datetime ,'YYYY-MM-DD')
+                        let html = `
                     <div class="col mb-4">
                         <div class="card text-white" style="background-color: #171719;">
                             <div class="card-body text-center">
                                 <h5 class="card-title">${day.format('dddd')}</h5>
-                                <img src="{{asset('/64x64/day/113.png')}}" style="width: 80px" alt="">
+                                <img src="{{asset('icons/')}}/${value.weather.icon}.png" style="width: 80px" alt="">
                                 <p class="card-text fw-bolder fs-2">${value.temp}°C</p>
-                                <p class="card-text fs-3">${value.weather.description}</p>
+                                <p class="card-text text-nowrap">${value.weather.description}</p>
                             </div>
                         </div>
                     </div>`
-                })
-                $('#uv-index').html(current.uv)
-                $('#wind-status').html(current.wind_spd)
-                $('#sunrise').html(current.sunrise)
-                $('#sunset').html(current.sunset)
-                $('#humidity').html(current.rh)
-                $('#visibility').html(current.vis)
-                $('#air-quality').html(current.aqi)
+                        $("#weekly").append(html)
+                    })
 
-
-            }
-            $('#sidebar-search-button').trigger('click');
-        })
-    </script>
+                    $('#uv-index').html(current.uv)
+                    $('#wind-status').html(current.wind_spd)
+                    $('#sunrise').html(current.sunrise)
+                    $('#sunset').html(current.sunset)
+                    $('#humidity').html(current.rh)
+                    $('#visibility').html(current.vis)
+                    $('#air-quality').html(current.aqi)
+                }
+                $('#sidebar-search-button').trigger('click');
+            })
+        </script>
+    </div>
 @endsection
