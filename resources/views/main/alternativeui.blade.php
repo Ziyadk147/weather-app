@@ -134,10 +134,9 @@
                     const city = $('#sidebar-search-input').val();
                     $.ajax({
                         url:'{{route('weather.get')}}',
-                        type:'POST',
+                        type:'GET',
                         data:{
                             city:city,
-                            _token:'{{csrf_token()}}'
                         },
                         success:function(success){
                             getData(success)
